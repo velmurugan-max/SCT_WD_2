@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Compact Calculator</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #121212;
+      color: #f0f0f0;
+      padding: 20px;
+      border: 2px solid #333;
+    }
+
+    h1 {
+      font-size: 36px;
+      text-align: center;
+      background: linear-gradient(to right, #ff6a00, #ee0979);
+      color: #fff;
+      padding: 8px;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      box-shadow: 0 3px 8px rgba(255, 105, 180, 0.4);
+    }
+
+    #ip {
+      background-color: #1e1e1e;
+      color: #00ffcc;
+      border: 2px solid #444;
+      padding: 10px;
+      margin: 10px auto;
+      font-size: 18px;
+      width: 90%;
+      min-height: 35px;
+      border-radius: 5px;
+      box-shadow: inset 0 0 10px #000;
+      text-align: right;
+    }
+
+    main {
+      text-align: center;
+    }
+
+    .button {
+      padding: 8px 12px;
+      margin: 4px;
+      font-size: 14px;
+      background: linear-gradient(to bottom right, #333, #555);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .button:hover {
+      background: linear-gradient(to bottom right, #444, #666);
+    }
+
+    #equal {
+      background-color: #00c853;
+      padding: 8px 30px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    #equal:hover {
+      background-color: #00e676;
+    }
+
+    .button:active {
+      transform: scale(0.95);
+    }
+
+    .button.operator {
+      background-color: #ff4081;
+    }
+
+    .button.operator:hover {
+      background-color: #f06292;
+    }
+
+    .button.utility {
+      background-color: #0091ea;
+    }
+
+    .button.utility:hover {
+      background-color: #00b0ff;
+    }
+  </style>
+</head>
+<body>
+  <h1>Calculator</h1>
+  <p id="ip">0</p>
+
+  <main>
+    <button class="button" onclick="calc(event)">9</button>
+    <button class="button" onclick="calc(event)">8</button>
+    <button class="button" onclick="calc(event)">7</button>
+    <button class="button operator" onclick="calc(event)">-</button>
+    <button class="button operator" onclick="calc(event)">/</button>
+
+    <br />
+    <button class="button" onclick="calc(event)">6</button>
+    <button class="button" onclick="calc(event)">5</button>
+    <button class="button" onclick="calc(event)">4</button>
+    <button class="button operator" onclick="calc(event)">+</button>
+    <button class="button operator" onclick="calc(event)">*</button>
+
+    <br />
+    <button class="button" onclick="calc(event)">3</button>
+    <button class="button" onclick="calc(event)">2</button>
+    <button class="button" onclick="calc(event)">1</button>
+    <button class="button utility" onclick="calc(event)">0</button>
+    <button class="button utility" onclick="calc(event)">.</button>
+
+    <br />
+    <button class="button utility" onclick="undo1()">Back</button>
+    <button class="button utility" onclick="clear1()">Clear</button>
+    <button class="button" id="equal" onclick="calculate()">=</button>
+  </main>
+
+  <script>
+    const i = document.getElementById("ip");
+
+    function calc(event) {
+      if (i.textContent === "0") i.textContent = "";
+      i.append(event.target.textContent);
+    }
+
+    function calculate() {
+      try {
+        i.textContent = eval(i.textContent);
+      } catch {
+        i.textContent = "Error";
+      }
+    }
+
+    function clear1() {
+      i.textContent = "0";
+    }
+
+    function undo1() {
+      i.textContent = i.textContent.slice(0, -1);
+    }
+  </script>
+</body>
+</html>
